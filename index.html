@@ -41,7 +41,7 @@
     };
 
     var jsonFlickrApi = function(results) {
-      $('#flickrLoader p').fadeOut('slow');
+      //$('#flickrLoader p').fadeOut('slow');
       var photos = results.photos.photo;
       $.each(photos, function(index, photo) {
         $(document.createElement("img"))
