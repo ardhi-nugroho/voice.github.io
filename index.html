@@ -47,7 +47,7 @@
         $(document.createElement("img"))
           .attr({ src: '//farm'+photo.farm+'.staticflickr.com/'+photo.server+'/'+photo.id+'_'+photo.secret+'_s.jpg' })
           .addClass("flickrGallery")
-          .empty().appendTo(flickrGallery);
+          .appendTo(flickrGallery);
       });
     };
 
