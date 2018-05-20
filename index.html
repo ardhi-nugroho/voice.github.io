@@ -28,11 +28,10 @@
     var showFlickr = function(tag) {
       $('#flickrGallery').show();
 	  $('#flickrGallery').empty();
-      $("<span>Searching for "+tag+"</span>").appendTo("#flickrLoader p");
+      $('#flickrLoader p').text('.Searching for '+tag).fadeIn('fast');
 	  //Old - $('#flickrLoader p').text($('flickrLoader').val()+'.Searching for '+tag).fadeIn('fast');
 	  //$('#flickrLoader2 p').text($('flickrLoader2 p').val()+'.Searching for '+tag).fadeIn('fast');
-	  $("<span>Searching for "+tag+"</span>").appendTo("#flickrLoader2 p");
-	  $('#flickrLoader2 p').fadeIn('fast');
+	  $("<span><li>"+tag+"</li></span>").appendTo("#SearchHistory ul");
       var url = '//api.flickr.com/services/rest/?method=flickr.photos.search&api_key=a828a6571bb4f0ff8890f7a386d61975&sort=interestingness-desc&per_page=9&format=json&callback=jsonFlickrApi&tags='+tag;
       $.ajax({
         type: 'GET',
@@ -116,11 +115,11 @@
     <p class="voice_instructions">Say "Show me black horses!"</p>
     <div id="flickrLoader"><p></p></div>
     <div id="flickrGallery" class="hidden"></div>
-	<div id="flickrLoader2"><p></p></div>
   </section>
   <section id="section_biz_use">
     <p class="voice_instructions">Fun stuff! Try saying "Show TPS report"</p>
     <img src="tpscover.jpg" id="tpsreport" class="hidden">
+	<div id="SearchHistory"><ul>Search History</ul></div>
   </section>
 
 
