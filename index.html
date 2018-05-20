@@ -28,9 +28,11 @@
     var showFlickr = function(tag) {
       $('#flickrGallery').show();
 	  $('#flickrGallery').empty();
-      ('Searching for '+tag).appendTo$('#flickrLoader p');
+      $("<span>Searching for "+tag+"</span>").appendTo("#flickrLoader p");
 	  //Old - $('#flickrLoader p').text($('flickrLoader').val()+'.Searching for '+tag).fadeIn('fast');
-	  $('#flickrLoader2 p').text($('flickrLoader2 p').val()+'.Searching for '+tag).fadeIn('fast');
+	  //$('#flickrLoader2 p').text($('flickrLoader2 p').val()+'.Searching for '+tag).fadeIn('fast');
+	  $("<span>Searching for "+tag+"</span>").appendTo("#flickrLoader2 p");
+	  $('#flickrLoader2 p').fadeIn('fast');
       var url = '//api.flickr.com/services/rest/?method=flickr.photos.search&api_key=a828a6571bb4f0ff8890f7a386d61975&sort=interestingness-desc&per_page=9&format=json&callback=jsonFlickrApi&tags='+tag;
       $.ajax({
         type: 'GET',
