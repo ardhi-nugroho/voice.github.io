@@ -28,7 +28,7 @@
     var showFlickr = function(tag) {
       $('#flickrGallery').show();
 	  $('#flickrGallery').empty();
-      $('#flickrLoader p').text('.Searching for '+tag).fadeIn('fast');
+      $('#flickrLoader p').text('Searching for '+tag).fadeIn('fast');
 	  //Old - $('#flickrLoader p').text($('flickrLoader').val()+'.Searching for '+tag).fadeIn('fast');
 	  //$('#flickrLoader2 p').text($('flickrLoader2 p').val()+'.Searching for '+tag).fadeIn('fast');
 	  $("<span><li>"+tag+"</li></span>").appendTo("#SearchHistory ul");
@@ -63,8 +63,11 @@
       });
     };
 
-    var getStarted = function() {
-      window.location.href = 'https://github.com/TalAter/annyang';
+    var selectStudio = function(tag) {
+      window.location.href = 'https://github.com/schaw/voice.github.io';
+	  $("<span><li>"+tag+"</li></span>").appendTo("#SearchHistory ul");
+	  
+	  
     }
 
     // define our commands.
@@ -75,7 +78,7 @@
       'hello (there)':        hello,
       'show me *search':      showFlickr,
       'show :type report':    showTPS,
-      'let\'s get started':   getStarted,
+      'select (studio) *studio':   selectStudio,
     };
 
     // OPTIONAL: activate debug mode for detailed logging in the console
