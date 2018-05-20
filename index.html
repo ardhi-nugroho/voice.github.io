@@ -11,7 +11,7 @@
   <meta property="og:site_name" content="annyang"/>
   <meta property="fb:admins" content="568390229" />
   <script src="annyang.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
   "use strict";
 
@@ -102,12 +102,12 @@
 </head>
 <body>
   <section id="section_header">
-    <h1><em>annyang!</em> SpeechRecognition that just works</h1>
-    <h2>annyang is a tiny javascript library that lets your visitors control your site with voice commands.</h2>
-    <h2>annyang supports multiple languages, has no dependencies, weighs just 2kb and is free to use.</h2>
-    <img src="images/icon_user.png">
-    <img src="images/icon_speech.png">
-    <img src="images/icon_js.png">
+    <h1><em>Voice</em> SpeechRecognition for dumb & deaf dashboards</h1>
+    <h2>Uses anyang to accomlish the same</h2>
+    <h2> This is simple & fun. Try saying "Show me cats" or "Show me black cats"</h2>
+    <!-- <img src="images/icon_user.png"> -->
+    <!-- <img src="images/icon_speech.png"> -->
+    <!-- <img src="images/icon_js.png"> -->
   </section>
   <section id="section_hello">
     <p><em>Go ahead, try it&hellip;</em></p>
@@ -116,8 +116,6 @@
   </section>
   <section id="section_image_search">
     <p><em>Let's try something more interesting&hellip;</em></p>
-    <p class="voice_instructions">Say "Show me cute kittens!"</p>
-    <p class="voice_instructions">Say "Show me Arches National Park!"</p>
     <p class="voice_instructions">Now go wild. Say "Show me&hellip;" and make your demands!</p>
     <div id="flickrLoader"><p></p></div>
     <div id="flickrGallery" class="hidden"></div>
@@ -127,11 +125,7 @@
     <p class="voice_instructions">No problem, say "Show TPS report"</p>
     <img src="images/tpscover.jpg" id="tpsreport" class="hidden">
   </section>
-  <div id="unsupported" class="hidden">
-    <h4>It looks like your browser doesn't support speech recognition.</h4>
-    <p>annyang plays nicely with all browsers, progressively enhancing modern browsers that support the SpeechRecognition standard, while leaving users with older browsers unaffected.</p>
-    <p>Please visit <a href="http://www.annyangjs.com/">http://www.annyangjs.com/</a> in a desktop browser like Chrome.</p>
-  </div>
+  
   <script>
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-24775009-1']);
