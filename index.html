@@ -11,7 +11,7 @@
   <meta property="og:site_name" content="annyang"/>
   <meta property="fb:admins" content="568390229" />
   <script src="annyang.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script>
   "use strict";
 
@@ -19,6 +19,11 @@
   if (annyang) {
 
     // define the functions our commands will run.
+    var hello = function() {
+      $("#hello").slideDown("slow");
+      scrollTo("#section_hello");
+    };
+
     var showFlickr = function(tag) {
       $('#flickrGallery').show();
       $('#flickrLoader p').text('Searching for '+tag).fadeIn('fast');
@@ -93,33 +98,26 @@
     }, speed || 1000);
   }
   </script>
-  <link rel="stylesheet" href="main.min.css" />
+  <link rel="stylesheet" href="css/main.min.css" />
 </head>
 <body>
-  <section id="section_header">
-    <h1><em>Voice</em> SpeechRecognition for dumb & deaf dashboards</h1>
-    <h4>Uses anyang to accomplish the same</h4>
-    <!-- <img src="icon_speech.png"> -->
-  </section>
   <section id="section_image_search">
-    <p><em>Let's try something interesting today&hellip;</em></p>
-    <p class="voice_instructions">Try saying "Show me &hellip;cats" or "Show me &hellip;white horses and make your demands!"</p>
+    <p><em>Let's try something interesting&hellip;</em></p>
+    <p class="voice_instructions">Say "Show me black horses!"</p>
     <div id="flickrLoader"><p></p></div>
     <div id="flickrGallery" class="hidden"></div>
   </section>
-  
-  <!--script>
-  // K3: Probably used by taleter for google analytics
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-24775009-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script-->
-  <script src="highlight.pack.js"></script>
+  <section id="section_biz_use">
+    <p><em>That's cool, but in the real world it's not all kittens and hello world.</em></p>
+    <p class="voice_instructions">No problem, say "Show TPS report"</p>
+    <img src="tpscover.jpg" id="tpsreport" class="hidden">
+  </section>
+
+
+
+
+
+  <script src="./vendor/js/highlight.pack.js"></script>
   <script>
     hljs.initHighlightingOnLoad();
   </script>
