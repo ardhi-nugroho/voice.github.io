@@ -15,7 +15,7 @@
   <script>
   "use strict";
 
-  // first we make sure annyang started succesfully
+  // first we make sure annyang started succesfully. Also adding Title case
   if (annyang) {
   
   var hello = function() {
@@ -65,10 +65,14 @@
 
     var selectStudio = function(tag) {
       //window.location.href = 'https://github.com/schaw/voice.github.io';
-	  $("<span><li>"+tag+"</li></span>").appendTo("#SearchHistory ul");
+	  $("<span><li>"+toTitleCase(tag)+"</li></span>").appendTo("#SearchHistory ul");
 	  
 	  
-    }
+    };
+	function toTitleCase(str)
+	{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+	}
 
     // define our commands.
     // * The key is the phrase you want your users to say.
