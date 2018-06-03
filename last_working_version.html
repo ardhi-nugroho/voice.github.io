@@ -11,11 +11,16 @@
   <meta property="og:site_name" content="annyang"/>
   <meta property="fb:admins" content="568390229" />
   <script src="annyang.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
   <script>
   "use strict";
-
-  // first we make sure annyang started succesfully
+	//$(document).ready(function(){
+    //$("#SearchHistory").click(function(){
+    //    alert("The paragraph was clicked.");
+	//	alert("He is good".toLowerCase().replace(/\b[a-z]/g, function(txtVal) {return txtVal.toUpperCase();}));
+    //});
+	//});
+  // first we make sure annyang started succesfully. Also adding Title case
   if (annyang) {
   
   var hello = function() {
@@ -26,13 +31,18 @@
     // define the functions our commands will run.
 
     var showFlickr = function(tag) {
+	    var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
+			return txtVal.toUpperCase();
+		});
+	 // Lowering case as expected
+	 // $("<span><li>"+tag.toLowerCase()+"</li></span>").appendTo("#SearchHistory ul");
+	  //Changes to pascal case
+	  //$("<span><li>"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
       $('#flickrGallery').show();
 	  $('#flickrGallery').empty();
       $('#flickrLoader p').text('Searching for '+tag).fadeIn('fast');
-	  //Old - $('#flickrLoader p').text($('flickrLoader').val()+'.Searching for '+tag).fadeIn('fast');
-	  //$('#flickrLoader2 p').text($('flickrLoader2 p').val()+'.Searching for '+tag).fadeIn('fast');
-	  $("<span><li>"+tag+"</li></span>").appendTo("#SearchHistory ul");
-      var url = '//api.flickr.com/services/rest/?method=flickr.photos.search&api_key=a828a6571bb4f0ff8890f7a386d61975&sort=interestingness-desc&per_page=9&format=json&callback=jsonFlickrApi&tags='+tag;
+	  $("<span><li>"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
+      var url = '//api.flickr.com/services/rest/?method=flickr.photos.search&api_key=a828a6571bb4f0ff8890f7a386d61975&sort=interestingness-desc&per_page=1&format=json&callback=jsonFlickrApi&tags='+tag;
       $.ajax({
         type: 'GET',
         url: url,
@@ -65,10 +75,23 @@
 
     var selectStudio = function(tag) {
       //window.location.href = 'https://github.com/schaw/voice.github.io';
+	  var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
+			return txtVal.toUpperCase();
+		});
+		var dashtag= tag+"";
+		
+		alert(tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {return txtVal.toUpperCase();}));
+	  //$("<span><li>"+toTitleCase("He is the greatest")+"</li></span>").appendTo("#SearchHistory ul");
 	  $("<span><li>"+tag+"</li></span>").appendTo("#SearchHistory ul");
-	  
-	  
-    }
+	  //$("<span><li>"+tag.toLowerCase()+"</li></span>").appendTo("#SearchHistory ul");
+	  //$("<span><li>"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
+	  //$("<span><li>"+dashtag+"dash</li></span>").appendTo("#SearchHistory ul");
+	};
+	
+	//function toTitleCase(str)
+	//{
+    //return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+	//}
 
     // define our commands.
     // * The key is the phrase you want your users to say.
