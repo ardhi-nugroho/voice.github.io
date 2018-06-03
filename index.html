@@ -130,13 +130,15 @@
     }, speed || 1000);
   }
   </script>
-  <link rel="stylesheet" href="main.min.css3333" />
+  <link rel="stylesheet" href="main.min.css" />
 </head>
 <body onload=initializeViz();>
-	<section id="section_header">
-    <h1><em>Voice!</em> Ears for dashboards</h1>
-    <!-- <img src="icon_speech.png"> -->
-  </section>
+	<h1>"Ratings" viz by Keshav Karn</h1>
+  <div id='tableauViz'style="height:500px; width: 1000px"></div>
+	<!-- <section id="section_header"> -->
+    <!-- <h1><em>Voice!</em> Ears for dashboards</h1> -->
+    <!-- <!-- <img src="icon_speech.png"> -- > -->
+  <!-- </section> -->
   <section id="section_image_search">
     <p><em>Let's try something interesting&hellip;</em></p>
     <p class="voice_instructions">Say "Show me black horses!"</p>
@@ -149,13 +151,6 @@
 	<div id="SearchHistory"><ul>Search History</ul></div>
   </section>
   
-<h1>"Ratings" viz by Keshav Karn</h1>
-  <div id='tableauViz'style="height:1000px; width: 1000px"></div>
-
-
-
-
-
   <script src="highlight.pack.js"></script>
   <script>
     hljs.initHighlightingOnLoad();
