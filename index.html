@@ -93,16 +93,12 @@
 	
 	//function toTitleCase(str){
     //return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});}
-
-    // define our commands.
-    // * The key is the phrase you want your users to say.
-    // * The value is the action to do.
-    //   You can pass a function, a function name (as a string), or write your function as part of the commands object.
+	
     var commands = {
       'hello (there)':        hello,
       'show me *search':      showFlickr,
       'show :type report':    showTPS,
-      'select (studio) *studio':   selectStudio,
+      'start over': function() { startover(); responsiveVoice.speak('starting over'); }
     };
 
     // OPTIONAL: activate debug mode for detailed logging in the console
@@ -110,10 +106,6 @@
 
     // Add voice commands to respond to
     annyang.addCommands(commands);
-
-    // OPTIONAL: Set a language for speech recognition (defaults to English)
-    // For a full list of language codes, see the documentation:
-    // https://github.com/TalAter/annyang/blob/master/docs/FAQ.md#what-languages-are-supported
     annyang.setLanguage('en');
 
     // Start listening. You can call this here, or attach this call to an event, button, etc.
@@ -129,16 +121,17 @@
         scrollTop: $(identifier).offset().top
     }, speed || 1000);
   }
+  function startover(){
+	viz.revertAllAsync();
+	}
   </script>
   <link rel="stylesheet" href="main.min.css" />
 </head>
 <body onload=initializeViz();>
 	<h1>"Ratings" viz by Keshav Karn</h1>
   <section id='tableauViz'style="height:500px; width: 1000px"></section>
-	<!-- <section id="section_header"> -->
-    <!-- <h1><em>Voice!</em> Ears for dashboards</h1> -->
-    <!-- <!-- <img src="icon_speech.png"> -- > -->
-  <!-- </section> -->
+  
+  
   <section id="section_image_search">
     <p><em>Let's try something interesting&hellip;</em></p>
     <p class="voice_instructions">Say "Show me black horses!"</p>
