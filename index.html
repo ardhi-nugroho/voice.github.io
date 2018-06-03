@@ -14,7 +14,13 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
   "use strict";
-
+	$(document).ready(function(){
+    $("#SearchHistory").click(function(){
+        alert("The paragraph was clicked.");
+		alert("He is good".toLowerCase().replace(/\b[a-z]/g, function(txtVal) {return txtVal.toUpperCase();}));
+		alert(tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {return txtVal.toUpperCase();}));
+    });
+});
   // first we make sure annyang started succesfully. Also adding Title case
   if (annyang) {
   
