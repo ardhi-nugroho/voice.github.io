@@ -5,6 +5,8 @@
   <title>annyang! Easily add speech recognition to your site</title>
   <meta name="description" content="annyang is a JavaScript SpeechRecognition library that makes adding voice commands to your site super-easy. Let your users control your site with their voice." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Creating Karn">
+	<meta name="author" content="Keshav Kritesh">
   <meta property="og:image" content="https://www.talater.com/annyang/images/icon_speech.png"/>
   <meta property="og:title" content="annyang! Easily add speech recognition to your site"/>
   <meta property="og:url" content="https://www.talater.com/annyang/"/>
@@ -31,8 +33,8 @@
 			}
 		};
 		  viz = new tableauSoftware.Viz(placeholderDiv, url, options);
-		  responsiveVoice.speak('Hi from Tbaleau');
 	}
+	responsiveVoice.speak('Hi from Tbaleau');
   // first we make sure annyang started succesfully. Also adding Title case
   if (annyang) {
   
@@ -85,7 +87,11 @@
         bottom: '-500px'
       });
     };
-
+	
+	function startover(){
+	viz.revertAllAsync();
+	}
+	
     var selectStudio = function(tag) {
       //window.location.href = 'https://github.com/schaw/voice.github.io';
 	  $("<span><li>"+tag+"</li></span>").appendTo("#SearchHistory ul");
