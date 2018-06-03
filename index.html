@@ -68,6 +68,8 @@
 	  tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
 			return txtVal.toUpperCase();
 		});
+		alert(tag);
+		alert(tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {return txtVal.toUpperCase();}));
 	  //$("<span><li>"+toTitleCase("He is the greatest")+"</li></span>").appendTo("#SearchHistory ul");
 	  $("<span><li>"+tag+"</li></span>").appendTo("#SearchHistory ul");
 	};
