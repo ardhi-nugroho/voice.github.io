@@ -88,14 +88,14 @@
       });
     };
 	
-	function startover(){
-	viz.revertAllAsync();
-	}
+	var showOver = function() { 
+	viz.revertAllAsync(); responsiveVoice.speak('starting over'); }
 	
     var selectStudio = function(tag) {
       //window.location.href = 'https://github.com/schaw/voice.github.io';
 	  $("<span><li>"+tag+"</li></span>").appendTo("#SearchHistory ul");
 	};
+	
 	
 	//function toTitleCase(str){
     //return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});}
@@ -104,7 +104,8 @@
       'hello (there)':        hello,
       'show me *search':      showFlickr,
       'show :type report':    showTPS,
-      'start over': function() { startover(); responsiveVoice.speak('starting over'); }
+      'start over': showOver,
+      'select (studio) *studio':   selectStudio,	  
     };
 
     // OPTIONAL: activate debug mode for detailed logging in the console
@@ -127,9 +128,6 @@
         scrollTop: $(identifier).offset().top
     }, speed || 1000);
   }
-  function startover(){
-	viz.revertAllAsync();
-	}
   </script>
   <link rel="stylesheet" href="main.min.css" />
 </head>
