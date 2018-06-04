@@ -71,13 +71,6 @@ function initializeViz(){
           .appendTo(flickrGallery);
       });
     };
-    var showTPS = function(type) {
-      $('#tpsreport').show().animate({
-        bottom: '-100px'
-      }).delay('2000').animate({
-        bottom: '-500px'
-      });
-    };
 	
 	var showOver = function() { 
 	viz.revertAllAsync(); responsiveVoice.speak('starting over'); }
@@ -89,32 +82,22 @@ function initializeViz(){
 	  $("<span><li>-"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
 		activeSheet.getWorksheets()[1].selectMarksAsync('Lead Studio', new_tag, 'REPLACE'); 
 	};
-	var selectStudio2 = function(tag) {
-	    var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
-			return txtVal.toUpperCase();
-		});
-      $('#flickrGallery').show();
-	  $('#flickrGallery').empty();
-      $('#flickrLoader p').text('Searching for '+tag).fadeIn('fast');
-	  $("<span><li>"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
-      var url = '//api.flickr.com/services/rest/?method=flickr.photos.search&api_key=a828a6571bb4f0ff8890f7a386d61975&sort=interestingness-desc&per_page=1&format=json&callback=jsonFlickrApi&tags='+tag;
-      $.ajax({
-        type: 'GET',
-        url: url,
-        async: false,
-        jsonpCallback: 'jsonFlickrApi',
-        contentType: "application/json",
-        dataType: 'jsonp'
-      });
-      scrollTo("#section_image_search");
-    };
+	var addSelectStudio =  function(tag) {
+		var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
+			return txtVal.toUpperCase(); });
+			
+	  $("<span><li>:"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
+		activeSheet.getWorksheets()[1].selectMarksAsync('Lead Studio', new_tag, 'ADD'); 
+	};
+	
     var commands = {
       'hello (there)':        hello,
       'show me *search':      showFlickr,
-	  'select studio *search' : selectStudio2,
-	  'filter *search' : selectStudio,
+	  'select *search' : selectStudio,
+	  'add select *search' : addSelectStudio,
       'start over': showOver  
     };
+	
     annyang.debug();
     annyang.addCommands(commands);
     annyang.setLanguage('en');
