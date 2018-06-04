@@ -110,7 +110,7 @@ function initializeViz(){
 	var clearFilterGenre =  function(tag) {
 		var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
 			return txtVal.toUpperCase(); });
-		if(new_tag == "type")
+		if(new_tag == "Type")
 		{new_tag = "Genre";}
 			
 	  $("<span><li>@"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
