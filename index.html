@@ -16,22 +16,23 @@
   <script src="responsivevoice.js"></script> 
 	<script src="https://public.tableausoftware.com/javascripts/api/tableau-2.min.js " type="text/javascript"></script> 
   <script>
-  "use strict";
-	var viz, workbook, activeSheet, Worksheet, worksheet;
-	function initializeViz(){
-		var placeholderDiv = document.getElementById("tableauViz");
-		var url = "https://public.tableau.com/views/BetaMovie/Ratings";
-		var options = {
-		   width: "800px",   
-		   height: "650px",
-		   hideTabs: true,
-		   hideToolbar: true,
-			  onFirstInteractive: function () {
-			  workbook = viz.getWorkbook();
-			  activeSheet = workbook.getActiveSheet();
-			};}
-		  viz = new tableauSoftware.Viz(placeholderDiv, url, options);
-	}
+  //"use strict";
+var viz, workbook, activeSheet, Worksheet, worksheet;
+function initializeViz(){
+	var placeholderDiv = document.getElementById("tableauViz");
+	var url = "https://public.tableau.com/views/BetaMovie/Ratings";
+	var options = {
+	   width: "800",   
+	   height: "627",
+	   hideTabs: true,
+	   hideToolbar: true,
+		  onFirstInteractive: function () {
+		  workbook = viz.getWorkbook();
+		  activeSheet = workbook.getActiveSheet();
+		}
+	};
+	  viz = new tableauSoftware.Viz(placeholderDiv, url, options);
+}
 	responsiveVoice.speak('Hi from Tableau');
   // first we make sure annyang started succesfully. Also adding Title case
   if (annyang) {
@@ -133,7 +134,7 @@
 </head>
 <body onload=initializeViz();>
 	<h1>"Ratings" viz by Keshav Karn</h1>
-  <section id='tableauViz'></section>
+  <section id='tableauViz'style="height:500px; width: 1000px"></section>
   
   
   <section id="section_image_search">
