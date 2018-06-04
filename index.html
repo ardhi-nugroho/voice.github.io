@@ -95,7 +95,7 @@ function initializeViz(){
 			return txtVal.toUpperCase(); });
 			
 	  $("<span><li>&"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
-		activeSheet.getWorksheets()[1].applyFilterAsync("Genre", "Action", 'REPLACE');; 
+		activeSheet.getWorksheets()[1].applyFilterAsync("Genre", new_tag, 'REPLACE'); 
 	};
 	
     var commands = {
