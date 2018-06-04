@@ -74,7 +74,7 @@ function initializeViz(){
 	
 	var showOver = function() { 
 	viz.revertAllAsync(); responsiveVoice.speak('starting over'); }
-
+	// Select studios
 	var selectStudio =  function(tag) {
 		var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
 			return txtVal.toUpperCase(); });
@@ -89,12 +89,21 @@ function initializeViz(){
 	  $("<span><li>:"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
 		activeSheet.getWorksheets()[1].selectMarksAsync('Lead Studio', new_tag, 'ADD'); 
 	};
+	// Filter genre
+	var filterGenre =  function(tag) {
+		var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
+			return txtVal.toUpperCase(); });
+			
+	  $("<span><li>&"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
+		activeSheet.getWorksheets()[1].applyFilterAsync("Genre", "Action", 'REPLACE');; 
+	};
 	
     var commands = {
       'hello (there)':        hello,
       'show me *search':      showFlickr,
 	  'select *search' : selectStudio,
 	  'add select *search' : addSelectStudio,
+	  'filter *some' : filterGenre,
       'start over': showOver  
     };
 	
