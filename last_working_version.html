@@ -5,21 +5,36 @@
   <title>annyang! Easily add speech recognition to your site</title>
   <meta name="description" content="annyang is a JavaScript SpeechRecognition library that makes adding voice commands to your site super-easy. Let your users control your site with their voice." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Creating Karn">
+	<meta name="author" content="Keshav Kritesh">
   <meta property="og:image" content="https://www.talater.com/annyang/images/icon_speech.png"/>
   <meta property="og:title" content="annyang! Easily add speech recognition to your site"/>
   <meta property="og:url" content="https://www.talater.com/annyang/"/>
   <meta property="og:site_name" content="annyang"/>
   <meta property="fb:admins" content="568390229" />
   <script src="annyang.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="responsivevoice.js"></script> 
+	<script src="https://public.tableausoftware.com/javascripts/api/tableau-2.min.js " type="text/javascript"></script> 
   <script>
-  "use strict";
-	//$(document).ready(function(){
-    //$("#SearchHistory").click(function(){
-    //    alert("The paragraph was clicked.");
-	//	alert("He is good".toLowerCase().replace(/\b[a-z]/g, function(txtVal) {return txtVal.toUpperCase();}));
-    //});
-	//});
+  //"use strict";
+var viz, workbook, activeSheet, Worksheet, worksheet;
+function initializeViz(){
+	var placeholderDiv = document.getElementById("tableauViz");
+	var url = "https://public.tableau.com/views/BetaMovie/Ratings";
+	var options = {
+	   width: "800px",   
+	   height: "627px",
+	   hideTabs: true,
+	   hideToolbar: true,
+		  onFirstInteractive: function () {
+		  workbook = viz.getWorkbook();
+		  activeSheet = workbook.getActiveSheet();
+		}
+	};
+	  viz = new tableauSoftware.Viz(placeholderDiv, url, options);
+}
+	//responsiveVoice.speak('Hi from Tableau');
   // first we make sure annyang started succesfully. Also adding Title case
   if (annyang) {
   
@@ -27,17 +42,11 @@
       $("#hello").slideDown("slow");
       scrollTo("#section_hello");
     };
-
     // define the functions our commands will run.
-
     var showFlickr = function(tag) {
 	    var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
 			return txtVal.toUpperCase();
 		});
-	 // Lowering case as expected
-	 // $("<span><li>"+tag.toLowerCase()+"</li></span>").appendTo("#SearchHistory ul");
-	  //Changes to pascal case
-	  //$("<span><li>"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
       $('#flickrGallery').show();
 	  $('#flickrGallery').empty();
       $('#flickrLoader p').text('Searching for '+tag).fadeIn('fast');
@@ -53,7 +62,6 @@
       });
       scrollTo("#section_image_search");
     };
-
     var jsonFlickrApi = function(results) {
       //$('#flickrLoader p').fadeOut('slow');
       var photos = results.photos.photo;
@@ -64,65 +72,42 @@
           .appendTo(flickrGallery);
       });
     };
+	
+	var showOver = function() { 
+	viz.revertAllAsync(); responsiveVoice.speak('starting over'); }
 
-    var showTPS = function(type) {
-      $('#tpsreport').show().animate({
-        bottom: '-100px'
-      }).delay('2000').animate({
-        bottom: '-500px'
-      });
-    };
-
-    var selectStudio = function(tag) {
-      //window.location.href = 'https://github.com/schaw/voice.github.io';
-	  var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
-			return txtVal.toUpperCase();
-		});
-		var dashtag= tag+"";
-		
-		alert(tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {return txtVal.toUpperCase();}));
-	  //$("<span><li>"+toTitleCase("He is the greatest")+"</li></span>").appendTo("#SearchHistory ul");
-	  $("<span><li>"+tag+"</li></span>").appendTo("#SearchHistory ul");
-	  //$("<span><li>"+tag.toLowerCase()+"</li></span>").appendTo("#SearchHistory ul");
-	  //$("<span><li>"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
-	  //$("<span><li>"+dashtag+"dash</li></span>").appendTo("#SearchHistory ul");
+	var selectStudio =  function(tag) {
+		var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
+			return txtVal.toUpperCase(); });
+			
+	  $("<span><li>-"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
+		activeSheet.getWorksheets()[1].selectMarksAsync('Lead Studio', new_tag, 'REPLACE'); 
+	};
+	var addSelectStudio =  function(tag) {
+		var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
+			return txtVal.toUpperCase(); });
+			
+	  $("<span><li>:"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
+		activeSheet.getWorksheets()[1].selectMarksAsync('Lead Studio', new_tag, 'ADD'); 
 	};
 	
-	//function toTitleCase(str)
-	//{
-    //return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-	//}
-
-    // define our commands.
-    // * The key is the phrase you want your users to say.
-    // * The value is the action to do.
-    //   You can pass a function, a function name (as a string), or write your function as part of the commands object.
     var commands = {
       'hello (there)':        hello,
       'show me *search':      showFlickr,
-      'show :type report':    showTPS,
-      'select (studio) *studio':   selectStudio,
+	  'select *search' : selectStudio,
+	  'add select *search' : addSelectStudio,
+      'start over': showOver  
     };
-
-    // OPTIONAL: activate debug mode for detailed logging in the console
+	
     annyang.debug();
-
-    // Add voice commands to respond to
     annyang.addCommands(commands);
-
-    // OPTIONAL: Set a language for speech recognition (defaults to English)
-    // For a full list of language codes, see the documentation:
-    // https://github.com/TalAter/annyang/blob/master/docs/FAQ.md#what-languages-are-supported
     annyang.setLanguage('en');
-
-    // Start listening. You can call this here, or attach this call to an event, button, etc.
     annyang.start();
   } else {
     $(document).ready(function() {
       $('#unsupported').fadeIn('fast');
     });
   }
-
   var scrollTo = function(identifier, speed) {
     $('html, body').animate({
         scrollTop: $(identifier).offset().top
@@ -131,11 +116,11 @@
   </script>
   <link rel="stylesheet" href="main.min.css" />
 </head>
-<body>
-	<section id="section_header">
-    <h1><em>Voice!</em> Ears for dashboards</h1>
-    <!-- <img src="icon_speech.png"> -->
-  </section>
+<body onload=initializeViz();>
+	<h1>"Ratings" viz by Keshav Karn</h1>
+  <section id='tableauViz'style="height:500px; width: 1000px"></section>
+  
+  
   <section id="section_image_search">
     <p><em>Let's try something interesting&hellip;</em></p>
     <p class="voice_instructions">Say "Show me black horses!"</p>
@@ -143,15 +128,9 @@
     <div id="flickrGallery" class="hidden"></div>
   </section>
   <section id="section_biz_use">
-    <p class="voice_instructions">Fun stuff! Try saying "Show TPS report"</p>
-    <img src="tpscover.jpg" id="tpsreport" class="hidden">
 	<div id="SearchHistory"><ul>Search History</ul></div>
   </section>
-
-
-
-
-
+  
   <script src="highlight.pack.js"></script>
   <script>
     hljs.initHighlightingOnLoad();
