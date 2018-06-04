@@ -84,7 +84,9 @@
 
 	var selectStudio =  function() {
 		var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
-			return txtVal.toUpperCase(); })
+			return txtVal.toUpperCase(); });
+			
+	  $("<span><li>-"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
 		activeSheet.getWorksheets()[1].selectMarksAsync('Lead Studio', new_tag, 'REPLACE'); 
 	}
     var commands = {
