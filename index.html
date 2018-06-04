@@ -21,19 +21,16 @@
 	function initializeViz(){
 		var placeholderDiv = document.getElementById("tableauViz");
 		var url = "https://public.tableau.com/views/BetaMovie/Ratings";
-		/**var options = {
-		   width: "800",   
-		   height: "650",
+		var options = {
+		   width: "800px",   
+		   height: "650px",
 		   hideTabs: true,
 		   hideToolbar: true,
 			  onFirstInteractive: function () {
 			  workbook = viz.getWorkbook();
 			  activeSheet = workbook.getActiveSheet();
-			
-		};}**/
-		  viz = new tableauSoftware.Viz(placeholderDiv, url);
-		  workbook = viz.getWorkbook();
-			activeSheet = workbook.getActiveSheet();
+			};}
+		  viz = new tableauSoftware.Viz(placeholderDiv, url, options);
 	}
 	responsiveVoice.speak('Hi from Tableau');
   // first we make sure annyang started succesfully. Also adding Title case
