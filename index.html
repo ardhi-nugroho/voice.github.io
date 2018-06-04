@@ -89,6 +89,9 @@ function initializeViz(){
 	  $("<span><li>:"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
 		activeSheet.getWorksheets()[1].selectMarksAsync('Lead Studio', new_tag, 'ADD'); 
 	};
+	var clearSelect =  function() {
+		activeSheet.getWorksheets()[1].clearSelectedMarksAsync(); 
+	};
 	// Filter genre
 	var filterGenre =  function(tag) {
 		var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
@@ -104,10 +107,14 @@ function initializeViz(){
 	  $("<span><li>&"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
 		activeSheet.getWorksheets()[1].applyFilterAsync("Genre", new_tag, 'ADD'); 
 	};
-
-	var clearSelect =  function() {
-		activeSheet.getWorksheets()[1].clearSelectedMarksAsync(); 
+	var clearFilterGenre =  function(tag) {
+		var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
+			return txtVal.toUpperCase(); });
+			
+	  $("<span><li>@"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
+		activeSheet.getWorksheets()[1].clearFilterAsync(new_tag);
 	};
+
     var commands = {
       'hello (there)':        hello,
       'show me *search':      showFlickr,
@@ -116,6 +123,7 @@ function initializeViz(){
 	  'clear selections' : clearSelect,
 	  'filter *genre' : filterGenre,
 	  'add filter *genre' : addFilterGenre,
+	  'clear filter *genre' : clearFilterGenre,
       'start over': showOver  
     };
 	
