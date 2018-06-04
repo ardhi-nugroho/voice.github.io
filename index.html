@@ -110,6 +110,8 @@ function initializeViz(){
 	var clearFilterGenre =  function(tag) {
 		var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
 			return txtVal.toUpperCase(); });
+		if(new_tag == "type")
+		{new_tag = "Genre";}
 			
 	  $("<span><li>@"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
 		activeSheet.getWorksheets()[1].clearFilterAsync(new_tag);
@@ -123,7 +125,7 @@ function initializeViz(){
 	  'clear selections' : clearSelect,
 	  'filter *genre' : filterGenre,
 	  'add filter *genre' : addFilterGenre,
-	  'clear filter *genre' : clearFilterGenre,
+	  'clear filter *filtername' : clearFilterGenre,
       'start over': showOver  
     };
 	
