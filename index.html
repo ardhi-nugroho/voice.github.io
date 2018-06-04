@@ -82,7 +82,7 @@
 	var showOver = function() { 
 	viz.revertAllAsync(); responsiveVoice.speak('starting over'); }
 
-	var selectStudio =  function() {
+	var selectStudio =  function(tag) {
 		var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
 			return txtVal.toUpperCase(); });
 			
