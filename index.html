@@ -104,11 +104,16 @@ function initializeViz(){
 	  $("<span><li>&"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
 		activeSheet.getWorksheets()[1].applyFilterAsync("Genre", new_tag, 'ADD'); 
 	};
+
+	var clearSelect =  function() {
+		activeSheet.getWorksheets()[1].clearSelectedMarksAsync(); 
+	};
     var commands = {
       'hello (there)':        hello,
       'show me *search':      showFlickr,
 	  'select *search' : selectStudio,
 	  'add select *search' : addSelectStudio,
+	  'clear selections' : clearSelect,
 	  'filter *genre' : filterGenre,
 	  'add filter *genre' : addFilterGenre,
       'start over': showOver  
