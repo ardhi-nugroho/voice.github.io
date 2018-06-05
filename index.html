@@ -99,6 +99,17 @@ function initializeViz(){
 	  $("<span><li>@"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
 		activeSheet.getWorksheets()[1].clearFilterAsync(new_tag);
 	};
+	var exportPDF = function() {
+	  $("<span><li>@Export PDF Heard</li></span>").appendTo("#SearchHistory ul");
+		viz.showExportPDFDialog();
+		responsiveVoice.speak('Exporting this dashboard as PDF');
+	};
+	
+	var exportImage = function() {
+	  $("<span><li>@Export as Image</li></span>").appendTo("#SearchHistory ul");
+		viz.showExportImageDialog();
+		responsiveVoice.speak('Exporting this dashboard as Image');
+	};
 
     var commands = {
 	  'select *search' : selectStudio,
@@ -110,6 +121,9 @@ function initializeViz(){
 	  'add filter *genre' : addFilterGenre,
 	  'remove *genre' : removeFilterGenre,
 	  'clear filter *filtername' : clearFilterGenre,//
+		
+	  'export to PDF' : exportPDF,
+	  'export to image' : exportImage,
 	  
       'start over': startOver,
 	  'Reset': startOver    
