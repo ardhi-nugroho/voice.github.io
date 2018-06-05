@@ -108,6 +108,13 @@ function initializeViz(){
 	  $("<span><li>&"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
 		activeSheet.getWorksheets()[1].applyFilterAsync("Genre", new_tag, 'ADD'); 
 	};
+	var removeFilterGenre =  function(tag) {
+		var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
+			return txtVal.toUpperCase(); });
+			
+	  $("<span><li>&"+new_tag+"</li></span>").appendTo("#SearchHistory ul");
+		activeSheet.getWorksheets()[1].applyFilterAsync('Genre', new_tag, 'REMOVE');
+	};
 	var clearFilterGenre =  function(tag) {
 		var new_tag = tag.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
 			return txtVal.toUpperCase(); });
@@ -126,6 +133,7 @@ function initializeViz(){
 	  'clear selections' : clearSelect,
 	  'filter *genre' : filterGenre,
 	  'add filter *genre' : addFilterGenre,
+	  'remove *genre' : removeFilterGenre,
 	  'clear filter *filtername' : clearFilterGenre,
       'start over': showOver  
     };
